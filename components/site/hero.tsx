@@ -11,7 +11,8 @@ const marqueeItems = [
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden">
+    // CHANGED: min-h-screen to min-h-[100dvh]
+    <section className="relative flex min-h-[100dvh] flex-col overflow-hidden">
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -23,12 +24,13 @@ export default function Hero() {
       </div>
 
       {/* Main hero content */}
-      <div className="relative z-10 flex flex-1 items-center px-6 pb-24 pt-28 sm:pb-28 sm:pt-32 lg:px-8">
+      {/* CHANGED: Adjusted mobile padding (pb-16 pt-24) so it fits neatly above the banner */}
+      <div className="relative z-10 flex flex-1 items-center px-6 pb-20 pt-24 sm:pb-28 sm:pt-32 lg:px-8">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-12">
           
           {/* Text Content */}
           <div className="w-full max-w-2xl">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 backdrop-blur-sm">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 backdrop-blur-sm sm:mb-5">
               <Award className="h-4 w-4 text-amber-400" />
               <span className="text-sm font-medium text-amber-200">
                 15+ Years of Craftsmanship
@@ -38,7 +40,7 @@ export default function Hero() {
               Seamless Walls.{' '}
               <span className="text-amber-400">Flawless Finish.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-stone-200 sm:mt-6 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-stone-200 sm:mt-6 sm:text-lg">
               Perfect Joint Drywall delivers expert drywall installation,
               taping, and carpentry for homes and businesses. Clean work,
               perfect joints, on-time delivery — every time.
@@ -103,7 +105,8 @@ export default function Hero() {
       </div>
 
       {/* Scrolling marquee banner */}
-      <div className="relative z-10 overflow-hidden border-t border-amber-600/40 bg-amber-500 py-2.5 sm:py-3">
+      {/* CHANGED: Made absolute bottom-0 left-0 right-0 so it NEVER leaves the bottom of the hero */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden border-t border-amber-600/40 bg-amber-500 py-2.5 sm:py-3">
         <div className="flex w-max animate-marquee whitespace-nowrap">
           {[0, 1].map((dup) => (
             <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
