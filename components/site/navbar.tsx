@@ -22,7 +22,8 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <a href="#" className="flex items-center gap-2.5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500 text-stone-900 shadow-md">
+          {/* Swapped bg-amber-500 -> bg-primary & text-stone-900 -> text-primary-foreground */}
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/logo-no-text.png" 
@@ -34,7 +35,8 @@ export default function Navbar() {
             <span className="text-lg font-bold tracking-tight text-white">
               Perfect Joint
             </span>
-            <span className="text-xs font-medium uppercase tracking-widest text-amber-300">
+            {/* Swapped text-amber-300 -> text-primary for that pop of color */}
+            <span className="text-xs font-medium uppercase tracking-widest text-primary">
               Drywall &amp; Carpentry
             </span>
           </div>
@@ -45,14 +47,15 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-stone-200 transition-colors hover:text-amber-400"
+              className="text-sm font-medium text-stone-200 transition-colors hover:text-primary"
             >
               {link.label}
             </a>
           ))}
+          {/* Swapped background/button colors over to the Primary utility class */}
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-semibold text-stone-900 shadow-md transition-all hover:bg-amber-400 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
           >
             Get a Free Quote
             <ArrowRight className="h-4 w-4" />
@@ -76,15 +79,16 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-base font-medium text-stone-200 transition-colors hover:text-amber-400"
+                className="text-base font-medium text-stone-200 transition-colors hover:text-primary"
               >
                 {link.label}
               </a>
             ))}
+            {/* Mobile menu also wired up dynamically */}
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-5 py-3 text-sm font-semibold text-stone-900"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
             >
               Get a Free Quote
               <ArrowRight className="h-4 w-4" />
@@ -95,3 +99,4 @@ export default function Navbar() {
     </header>
   );
 }
+

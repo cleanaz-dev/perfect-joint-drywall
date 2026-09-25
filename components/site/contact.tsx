@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { services } from '@/lib/data';
 
-
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -21,8 +20,8 @@ export default function Contact() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            <div className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-amber-400">
-              <span className="h-px w-8 bg-amber-500" />
+            <div className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-primary">
+              <span className="h-px w-8 bg-primary" />
               Get In Touch
             </div>
             <h2 className="text-4xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
@@ -36,9 +35,9 @@ export default function Contact() {
             <div className="mt-10 space-y-6">
               <a
                 href="tel:+15555550100"
-                className="flex items-center gap-4 transition-opacity hover:opacity-80"
+                className="group flex items-center gap-4 transition-opacity hover:opacity-80"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-stone-900">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-colors group-hover:bg-primary/90">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
@@ -52,9 +51,9 @@ export default function Contact() {
               </a>
               <a
                 href="mailto:info@perfectjointdrywall.com"
-                className="flex items-center gap-4 transition-opacity hover:opacity-80"
+                className="group flex items-center gap-4 transition-opacity hover:opacity-80"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-stone-900">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-colors group-hover:bg-primary/90">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
@@ -67,7 +66,7 @@ export default function Contact() {
                 </div>
               </a>
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-stone-900">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
@@ -104,7 +103,7 @@ export default function Contact() {
                     type="text"
                     required
                     placeholder="John Smith"
-                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
                 <div>
@@ -115,7 +114,7 @@ export default function Contact() {
                     type="tel"
                     required
                     placeholder="(555) 555-0100"
-                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
               </div>
@@ -127,7 +126,7 @@ export default function Contact() {
                   type="email"
                   required
                   placeholder="john@example.com"
-                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               <div>
@@ -136,7 +135,7 @@ export default function Contact() {
                 </label>
                 <select
                   required
-                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                 >
                   <option value="">Select a service...</option>
                   {services.map((s) => (
@@ -155,12 +154,12 @@ export default function Contact() {
                   rows={4}
                   required
                   placeholder="Tell us about your project..."
-                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-4 text-base font-semibold text-stone-900 shadow-lg transition-all hover:bg-amber-400 hover:shadow-xl"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
               >
                 Send Request
                 <ArrowRight className="h-5 w-5" />

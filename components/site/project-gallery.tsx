@@ -2,13 +2,13 @@ import { projects } from '@/lib/data';
 
 export default function ProjectGallery() {
   return (
-    <section id="work" className="py-24">
+    <section id="work" className="py-24 bg-primary/10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-amber-600">
-            <span className="h-px w-8 bg-amber-500" />
+          <div className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-primary">
+            <span className="h-px w-8 bg-primary" />
             Recent Work
-            <span className="h-px w-8 bg-amber-500" />
+            <span className="h-px w-8 bg-primary" />
           </div>
           <h2 className="text-4xl font-bold leading-tight tracking-tight text-stone-900 lg:text-5xl">
             Projects we are proud of
@@ -29,7 +29,7 @@ export default function ProjectGallery() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="text-sm font-semibold uppercase tracking-wider text-amber-400">
+                <span className="text-sm font-semibold uppercase tracking-wider text-primary">
                   {project.category}
                 </span>
                 <h3 className="mt-1 text-xl font-bold text-white">

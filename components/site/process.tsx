@@ -5,10 +5,10 @@ export default function Process() {
     <section id="process" className="bg-stone-900 py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-amber-400">
-            <span className="h-px w-8 bg-amber-500" />
+          <div className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-primary">
+            <span className="h-px w-8 bg-primary" />
             How It Works
-            <span className="h-px w-8 bg-amber-500" />
+            <span className="h-px w-8 bg-primary" />
           </div>
           <h2 className="text-4xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
             A straightforward process
@@ -25,9 +25,9 @@ export default function Process() {
               {index < steps.length - 1 && (
                 <div className="absolute left-14 top-7 hidden h-px w-full bg-stone-700 lg:block" />
               )}
-              <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-amber-500 text-stone-900 shadow-lg">
+              <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg">
                 <step.icon className="h-6 w-6" strokeWidth={2} />
-                <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs font-bold text-amber-400 ring-2 ring-amber-500">
+                <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs font-bold text-primary ring-2 ring-primary">
                   {index + 1}
                 </span>
               </div>

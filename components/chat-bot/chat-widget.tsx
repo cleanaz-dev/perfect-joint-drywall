@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { MessageSquare, X, ChevronDown, User } from 'lucide-react';
+import { MessageSquare, X, ChevronDown, User, Bot } from 'lucide-react';
 
 // Define the structure for preloaded questions
 interface Question {
@@ -67,8 +67,6 @@ export default function ChatWidget() {
   // Auto-open on desktop after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Only auto-open if the user hasn't already opened/closed it manually 
-      // and if it's a desktop screen (>= 640px)
       if (!hasInteracted && window.innerWidth >= 640) {
         setIsOpen(true);
       }
@@ -85,7 +83,7 @@ export default function ChatWidget() {
         !chatWindowRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
-        setHasInteracted(true); // Prevent auto-open from triggering again
+        setHasInteracted(true);
       }
     };
 
@@ -112,20 +110,17 @@ export default function ChatWidget() {
     setShowOptions(false);
     setHasInteracted(true);
     
-    // Add user message
     setMessages((prev) => [
       ...prev,
       { id: Date.now(), sender: 'user', text: question.label },
     ]);
 
-    // Simulate typing delay for bot response
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
         { id: Date.now() + 1, sender: 'bot', text: question.reply },
       ]);
       
-      // Show options again after a short delay
       setTimeout(() => setShowOptions(true), 800);
     }, 600);
   };
@@ -135,13 +130,14 @@ export default function ChatWidget() {
       {/* Floating Action Button */}
        <button
         onClick={handleOpen}
-        className={`fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-white text-stone-900 shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-110 hover:bg-stone-50 ${
+        className={`fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-white text-stone-900 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-stone-50 ${
           isOpen ? 'pointer-events-none scale-50 opacity-0' : 'scale-100 opacity-100'
         }`}
         aria-label="Open chat"
       >
         <MessageSquare className="h-8 w-8" />
       </button>
+      
       {/* Chat Window */}
       <div
         ref={chatWindowRef}
@@ -154,17 +150,17 @@ export default function ChatWidget() {
         {/* Header */}
         <div className="flex items-center justify-between bg-stone-900 p-4 text-white sm:rounded-t-2xl">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-stone-900 shadow-md">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="/logo.png" 
+                src="/logo-no-text.png" 
                 alt="Perfect Joint Logo" 
                 className="h-6 w-6 object-contain"
               />
             </div>
             <div>
               <h3 className="font-bold leading-tight tracking-wide">Perfect Joint Support</h3>
-              <p className="text-xs font-medium text-amber-400">Usually replies instantly</p>
+              <p className="text-xs font-medium text-primary">Usually replies instantly</p>
             </div>
           </div>
           <button
@@ -190,17 +186,14 @@ export default function ChatWidget() {
                 <div
                   className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full shadow-sm ${
                     msg.sender === 'bot'
-                      ? 'bg-amber-500 text-stone-900'
+                      ? 'bg-primary text-white'
                       : 'bg-stone-800 text-white'
                   }`}
                 >
                   {msg.sender === 'bot' ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
-                    <img 
-                      src="/logo.png" 
-                      alt="Bot" 
-                      className="h-4 w-4 object-contain brightness-0"
-                    />
+                    <Bot className="h-4 w-4" />
+              
                   ) : (
                     <User className="h-4 w-4" />
                   )}
@@ -210,7 +203,7 @@ export default function ChatWidget() {
                 <div
                   className={`rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
                     msg.sender === 'user'
-                      ? 'rounded-br-sm bg-amber-500 font-medium text-stone-900 shadow-amber-500/20'
+                      ? 'rounded-br-sm bg-primary font-medium text-white shadow-primary/20'
                       : 'rounded-bl-sm border border-stone-200/60 bg-stone-100 text-stone-800'
                   }`}
                 >
@@ -234,7 +227,7 @@ export default function ChatWidget() {
                   <button
                     key={q.id}
                     onClick={() => handleOptionClick(q)}
-                    className="rounded-full border-2 border-amber-400 bg-white px-4 py-2 text-left text-sm font-semibold text-stone-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400 hover:text-stone-900 hover:shadow-md active:translate-y-0"
+                    className="rounded-full border-2 border-primary bg-white px-4 py-2 text-left text-sm font-semibold text-stone-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary hover:text-white hover:shadow-md active:translate-y-0"
                   >
                     {q.label}
                   </button>
@@ -244,13 +237,13 @@ export default function ChatWidget() {
           ) : (
             <div className="flex items-center gap-2 py-2">
               <div className="flex h-3 w-3 items-center justify-center gap-1">
-                <span className="block h-1.5 w-1.5 animate-bounce rounded-full bg-amber-500"></span>
+                <span className="block h-1.5 w-1.5 animate-bounce rounded-full bg-primary"></span>
                 <span
-                  className="block h-1.5 w-1.5 animate-bounce rounded-full bg-amber-500"
+                  className="block h-1.5 w-1.5 animate-bounce rounded-full bg-primary"
                   style={{ animationDelay: '0.2s' }}
                 ></span>
                 <span
-                  className="block h-1.5 w-1.5 animate-bounce rounded-full bg-amber-500"
+                  className="block h-1.5 w-1.5 animate-bounce rounded-full bg-primary"
                   style={{ animationDelay: '0.4s' }}
                 ></span>
               </div>
@@ -264,3 +257,4 @@ export default function ChatWidget() {
     </>
   );
 }
+
