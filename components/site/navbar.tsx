@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Hammer, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { navLinks } from '@/lib/data';
 
 export default function Navbar() {
@@ -23,7 +23,12 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <a href="#" className="flex items-center gap-2.5">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500 text-stone-900 shadow-md">
-            <Hammer className="h-5 w-5" strokeWidth={2.5} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="/logo-no-text.png" 
+              alt="Perfect Joint Logo" 
+              className="h-7 w-7 object-contain drop-shadow-sm"
+            />
           </div>
           <div className="flex flex-col leading-tight">
             <span className="text-lg font-bold tracking-tight text-white">

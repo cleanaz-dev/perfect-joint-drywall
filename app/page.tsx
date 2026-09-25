@@ -1,3 +1,4 @@
+import ChatWidget from "@/components/chat-bot/chat-widget";
 import About from "@/components/site/about";
 import Contact from "@/components/site/contact";
 import Footer from "@/components/site/footer";
@@ -25,6 +26,7 @@ export default function HomePage() {
         <Contact />
       </main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }

@@ -24,8 +24,10 @@ export default function Hero() {
 
       {/* Main hero content */}
       <div className="relative z-10 flex flex-1 items-center px-6 pb-24 pt-28 sm:pb-28 sm:pt-32 lg:px-8">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="max-w-2xl">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-12">
+          
+          {/* Text Content */}
+          <div className="w-full max-w-2xl">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 backdrop-blur-sm">
               <Award className="h-4 w-4 text-amber-400" />
               <span className="text-sm font-medium text-amber-200">
@@ -58,7 +60,8 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 sm:mt-12">
+            {/* Hidden on mobile, shown on larger screens */}
+            <div className="mt-10 hidden flex-wrap items-center gap-x-8 gap-y-3 sm:mt-12 lg:flex">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-amber-400" />
                 <span className="text-sm font-medium text-stone-200">
@@ -83,6 +86,19 @@ export default function Hero() {
               </div>
             </div>
           </div>
+
+          {/* Logo Component - Beside text, desktop only, solid orange background */}
+          <div className="pointer-events-none hidden lg:flex lg:flex-1 lg:justify-end xl:justify-center">
+            <div className="flex h-72 w-72 items-center justify-center rounded-full bg-amber-500 shadow-2xl lg:h-80 lg:w-80 xl:h-96 xl:w-96">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.png"
+                alt="Perfect Joint Logo"
+                className="h-48 w-48 object-contain drop-shadow-xl lg:h-56 lg:w-56 xl:h-64 xl:w-64"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -113,9 +129,10 @@ export default function Hero() {
         .animate-marquee {
           animation: marquee 28s linear infinite;
         }
+        /* Increased animation-duration significantly to slow it down on mobile */
         @media (max-width: 640px) {
           .animate-marquee {
-            animation-duration: 18s;
+            animation-duration: 40s; 
           }
         }
       `}</style>
