@@ -3,9 +3,33 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { services } from '@/lib/data';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+// Base UI's Select needs an `items` array on the root (unlike Radix, which
+// only reads its options from the JSX children). The array doubles as the
+// list SelectValue uses to look up the label for the current value, so the
+// placeholder needs an entry too, with value: null.
+const projectTypeItems: { label: string; value: string | null }[] = [
+  { label: 'Select a service...', value: null },
+  ...services.map((s) => ({ label: s.title, value: s.title })),
+  { label: 'Other / Not Sure', value: 'Other' },
+];
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [projectType, setProjectType] = useState<string | null>(null);
 
   return (
     <section id="contact" className="relative overflow-hidden bg-stone-900 py-24">
@@ -81,96 +105,110 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-8 shadow-2xl lg:p-10">
-            <h3 className="text-2xl font-bold text-stone-900">
-              Request a Free Quote
-            </h3>
-            <form
-              className="mt-6 space-y-5"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-                e.currentTarget.reset();
-                setTimeout(() => setSubmitted(false), 5000);
-              }}
-            >
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1.5 block text-sm font-semibold text-stone-700">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="John Smith"
-                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
-                  />
-                </div>
-                <div>
-                  <label className="mb-1.5 block text-sm font-semibold text-stone-700">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="(555) 555-0100"
-                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-semibold text-stone-700">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="john@example.com"
-                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
-                />
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-semibold text-stone-700">
-                  Project Type
-                </label>
-                <select
-                  required
-                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
-                >
-                  <option value="">Select a service...</option>
-                  {services.map((s) => (
-                    <option key={s.title} value={s.title}>
-                      {s.title}
-                    </option>
-                  ))}
-                  <option value="Other">Other / Not Sure</option>
-                </select>
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-semibold text-stone-700">
-                  Project Details
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  placeholder="Tell us about your project..."
-                  className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base text-stone-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
-                />
-              </div>
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
+          <Card className="shadow-2xl lg:p-2">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-stone-900">
+                Request a Free Quote
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form
+                className="space-y-5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!projectType) return;
+                  setSubmitted(true);
+                  e.currentTarget.reset();
+                  setProjectType(null);
+                  setTimeout(() => setSubmitted(false), 5000);
+                }}
               >
-                Send Request
-                <ArrowRight className="h-5 w-5" />
-              </button>
-              {submitted && (
-                <div className="rounded-lg bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-700">
-                  Thanks! We will be in touch within 24 hours.
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      required
+                      placeholder="(555) 555-0100"
+                    />
+                  </div>
                 </div>
-              )}
-            </form>
-          </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="john@example.com"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="project-type">Project Type</Label>
+                  {/* Base UI Select: controlled via value/onValueChange (not a
+                      native <select>), so it's reset manually on submit
+                      rather than by form.reset(). */}
+                  <Select
+                    items={projectTypeItems}
+                    value={projectType}
+                    onValueChange={setProjectType}
+                  >
+                    <SelectTrigger id="project-type" className="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {projectTypeItems.map((item) => (
+                          <SelectItem
+                            key={item.value ?? 'placeholder'}
+                            value={item.value}
+                          >
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="details">Project Details</Label>
+                  <Textarea
+                    id="details"
+                    name="details"
+                    rows={4}
+                    required
+                    placeholder="Tell us about your project..."
+                  />
+                </div>
+
+                <Button type="submit" size="lg" className="w-full gap-2">
+                  Send Request
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+
+                {submitted && (
+                  <div className="rounded-lg bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-700">
+                    Thanks! We will be in touch within 24 hours.
+                  </div>
+                )}
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

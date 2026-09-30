@@ -1,143 +1,53 @@
-import { ArrowRight, ChevronRight, Award, Clock, ShieldCheck, Star } from 'lucide-react';
-import { services } from '@/lib/data';
-
-const marqueeItems = [
-  ...services.map((s) => s.title),
-  'Fully Insured & Licensed',
-  'Free Estimates',
-  'On-Time Guarantee',
-  '15+ Years Experience',
-];
+import { ShieldCheck } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[100dvh] flex-col overflow-hidden">
-      <div className="absolute inset-0">
+    <section className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-primary">
+      {/* Background Image - Right 4/5ths on large screens */}
+      <div className="absolute bottom-0 right-0 top-0 w-full lg:w-4/5">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.pexels.com/photos/4981812/pexels-photo-4981812.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920"
+          // src="/hero-img.webp"
+          src="hero-test.jpeg"
           alt="Professional drywall installation"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-900/85 to-stone-900/50" />
       </div>
 
       {/* Main hero content */}
-      <div className="relative z-10 flex flex-1 items-center px-6 pb-20 pt-24 sm:pb-28 sm:pt-32 lg:px-8">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-12">
+      <div className="relative z-10 flex flex-1 items-center px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center">
           
-          {/* Text Content */}
-          <div className="w-full max-w-2xl">
-            {/* Using primary color from globals.css */}
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 backdrop-blur-sm sm:mb-5">
-              <Award className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary-foreground/90">
-                15+ Years of Craftsmanship
-              </span>
-            </div>
-            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Seamless Walls.{' '}
-              <span className="text-primary">Flawless Finish.</span>
+          {/* Floating Content Card */}
+          <div className="w-full max-w-[36rem] rounded-[2rem] bg-white/80 p-8 shadow-2xl sm:p-12">
+            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-gray-900 sm:text-[3.4rem]">
+              Professional<br />
+              Drywall, Flawless<br />
+              Finishes
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-stone-300 sm:mt-6 sm:text-lg">
-              Perfect Joint Drywall delivers expert drywall installation,
-              taping, and carpentry for homes and businesses. Clean work,
-              perfect joints, on-time delivery — every time.
+            
+            <p className="mt-5 text-lg leading-relaxed text-gray-600 sm:text-xl">
+              From installations to repair, our expert team transforms your spaces with precision and care.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
-              {/* Primary CTA */}
+            
+            <div className="mt-8">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-xl transition-all hover:bg-primary/90 hover:shadow-2xl hover:-translate-y-0.5 sm:px-7 sm:py-4"
+                className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-all hover:bg-blue-700 hover:-translate-y-0.5"
               >
-                Get a Free Quote
-                <ArrowRight className="h-5 w-5" />
-              </a>
-              {/* Secondary CTA */}
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-secondary/20 bg-secondary/10 px-6 py-3.5 text-base font-semibold text-secondary-foreground backdrop-blur-sm transition-all hover:bg-secondary/20 hover:border-secondary/40 sm:px-7 sm:py-4"
-              >
-                Explore Services
-                <ChevronRight className="h-5 w-5" />
+                Get A Free Quote
               </a>
             </div>
 
-            {/* Hidden on mobile, shown on larger screens */}
-            <div className="mt-10 hidden flex-wrap items-center gap-x-8 gap-y-3 sm:mt-12 lg:flex">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium text-stone-200">
-                  Fully Insured &amp; Licensed
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium text-stone-200">
-                  On-Time Guarantee
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                  ))}
-                </div>
-                <span className="text-sm font-medium text-stone-200">
-                  5-Star Reviews
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Logo Component - Frosted glass with primary border instead of huge solid circle */}
-          <div className="pointer-events-none hidden lg:flex lg:flex-1 lg:justify-end xl:justify-center">
-            <div className="flex h-72 w-72 items-center justify-center rounded-full border border-primary/30 bg-primary backdrop-blur-md shadow-[0_0_40px_-10px_rgba(var(--primary),0.3)] lg:h-80 lg:w-80 xl:h-96 xl:w-96">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.png"
-                alt="Perfect Joint Logo"
-                className="h-48 w-48 object-contain drop-shadow-2xl lg:h-56 lg:w-56 xl:h-64 xl:w-64"
-              />
+            <div className="mt-6 flex items-center gap-2 text-sm font-medium text-gray-800">
+              {/* Uses fill and text props to create the solid dark shield with white check effect */}
+              <ShieldCheck className="h-5 w-5 fill-primary text-white" />
+              <span>Licensed &amp; Insured | Satisfaction Guaranteed</span>
             </div>
           </div>
 
         </div>
       </div>
-
-      {/* Scrolling marquee banner - Using secondary background to anchor the bottom elegantly */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden border-t border-border/20 bg-primary py-2.5 sm:py-3">
-        <div className="flex w-max animate-marquee whitespace-nowrap">
-          {[0, 1].map((dup) => (
-            <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
-              {marqueeItems.map((item, i) => (
-                <span
-                  key={`${dup}-${i}`}
-                  className="mx-4 flex items-center gap-4 text-sm font-bold uppercase tracking-wide text-secondary-foreground sm:mx-6 sm:text-base"
-                >
-                  {item}
-                  <span className="text-secondary-foreground/30">•</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 28s linear infinite;
-        }
-        @media (max-width: 640px) {
-          .animate-marquee {
-            animation-duration: 40s; 
-          }
-        }
-      `}</style>
     </section>
   );
 }

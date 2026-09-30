@@ -17,25 +17,23 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? 'bg-stone-900/95 shadow-lg backdrop-blur-sm' : 'bg-transparent'
+        scrolled ? 'bg-white shadow-md' : 'bg-white'
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <a href="#" className="flex items-center gap-2.5">
-          {/* Swapped bg-amber-500 -> bg-primary & text-stone-900 -> text-primary-foreground */}
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md">
+   
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
-              src="/logo-no-text.png" 
+              src="/logo-no-bg.webp" 
               alt="Perfect Joint Logo" 
-              className="h-7 w-7 object-contain drop-shadow-sm"
+              className="size-12 object-contain drop-shadow-sm"
             />
-          </div>
+       
           <div className="flex flex-col leading-tight">
-            <span className="text-lg font-bold tracking-tight text-white">
+            <span className="text-lg font-bold tracking-tight text-gray-900">
               Perfect Joint
             </span>
-            {/* Swapped text-amber-300 -> text-primary for that pop of color */}
             <span className="text-xs font-medium uppercase tracking-widest text-primary">
               Drywall &amp; Carpentry
             </span>
@@ -47,12 +45,11 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-stone-200 transition-colors hover:text-primary"
+              className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
             >
               {link.label}
             </a>
           ))}
-          {/* Swapped background/button colors over to the Primary utility class */}
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
@@ -64,7 +61,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-white lg:hidden"
+          className="text-gray-900 lg:hidden"
           aria-label="Toggle menu"
         >
           {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -72,19 +69,18 @@ export default function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="bg-stone-900 px-6 pb-6 lg:hidden">
-          <div className="flex flex-col gap-4">
+        <div className="border-t border-gray-100 bg-white px-6 pb-6 shadow-xl lg:hidden">
+          <div className="mt-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-base font-medium text-stone-200 transition-colors hover:text-primary"
+                className="text-base font-medium text-gray-600 transition-colors hover:text-gray-900"
               >
                 {link.label}
               </a>
             ))}
-            {/* Mobile menu also wired up dynamically */}
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
@@ -99,4 +95,3 @@ export default function Navbar() {
     </header>
   );
 }
-

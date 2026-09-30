@@ -130,7 +130,7 @@ export default function ChatWidget() {
       {/* Floating Action Button */}
        <button
         onClick={handleOpen}
-        className={`fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-white text-stone-900 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-stone-50 ${
+        className={`fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-stone-50 hover:text-primary hover:ring-2 hover:ring-primary ${
           isOpen ? 'pointer-events-none scale-50 opacity-0' : 'scale-100 opacity-100'
         }`}
         aria-label="Open chat"
@@ -153,7 +153,7 @@ export default function ChatWidget() {
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="/logo-no-text.png" 
+                src="/new-logo-no-bg-no-text.png"
                 alt="Perfect Joint Logo" 
                 className="h-6 w-6 object-contain"
               />

@@ -1,28 +1,31 @@
 @import "tailwindcss";
+
 @import "tw-animate-css";
+
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* 🚀 THE MAGIC: Overriding "slate/zinc" to be cold, heavy Blueprint Steel */
-  --color-blue-50: #f5f7fa;
-  --color-blue-100: #e6ebf2;
-  --color-blue-200: #cfd9e6;
-  --color-blue-300: #aebdd1;
-  --color-blue-400: #8598b6; /* Dusty steel for text highlights */
-  --color-blue-500: #5C7A9C; /* The main pop color - mid weight steel blue */
-  --color-blue-600: #415C7E; /* Darker hover state */
-  --color-blue-700: #324A67;
-  --color-blue-800: #2B3E55;
-  --color-blue-900: #263448;
-  --color-blue-950: #18212E;
+  /* Logo Teal Palette */
+  --color-blue-50: #f0fafb;
+  --color-blue-100: #d9f1f3;
+  --color-blue-200: #b5e2e6;
+  --color-blue-300: #82cdd3;
+  --color-blue-400: #45afb8;
+  --color-blue-500: #097680;
+  --color-blue-600: #07636b;
+  --color-blue-700: #07515a;
+  --color-blue-800: #06434a;
+  --color-blue-900: #05373d;
+  --color-blue-950: #03252a;
 
   /* Shadcn standard mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -31,6 +34,7 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -47,6 +51,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -59,45 +64,65 @@
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
+
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  /* Updated Primary to match Heavy Steel */
-  --primary: oklch(0.46 0.06 250); 
+
+  /* Logo Teal */
+  --primary: oklch(0.52 0.105 194);
   --primary-foreground: oklch(0.985 0 0);
+
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
+
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
+
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
+
   --destructive: oklch(0.577 0.245 27.325);
+
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.46 0.06 250); 
+
+  --ring: oklch(0.52 0.105 194);
+
   --radius: 0.5rem;
 }
 
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
+
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
+
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.46 0.06 250); 
+
+  /* Logo Teal */
+  --primary: oklch(0.52 0.105 194);
   --primary-foreground: oklch(0.985 0 0);
+
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
+
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
+
   --destructive: oklch(0.704 0.191 22.216);
+
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.46 0.06 250);
+
+  --ring: oklch(0.52 0.105 194);
 }
 
 @layer base {
