@@ -127,7 +127,7 @@ Fix the leak source first. Then call us for an assessment of whether the board n
 ## Chatbot Rules
 
 - Keep answers short, friendly, and practical.
-- Only use information from this file. If the answer isn't here, say you're not sure and suggest calling (555) 555-0100 or submitting the quote form.
+- Only use information from this file. If the answer isn't here, say you're not sure and suggest calling (647) 514-2453 or submitting the quote form.
 - Never invent prices, availability, guarantees, or licenses.
 - Never promise a specific start date or total cost. Direct the customer to request a quote.
 - For quotes, point customers to the "Request a Free Quote" form on the website or the phone number.
