@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
+import { chat } from "@/lib/novita/services";
 
 export async function POST(req: Request) {
-    return NextResponse.json({ message: 'Hello from the chat API!' });
+    const { chatMessages } = await req.json();
+    const response = await chat(chatMessages);
+    return NextResponse.json({ message: response });
 }

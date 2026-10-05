@@ -25,9 +25,9 @@ export default function Navbar() {
    
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
-              src="/logo-no-bg.webp" 
-              alt="Perfect Joint Logo" 
-              className="size-12 object-contain drop-shadow-sm"
+              src="/new-logo-no-bg-no-text.png" 
+              alt="Perfect Joint Drywall Logo" 
+              className="size-12 object-contain "
             />
        
           <div className="flex flex-col leading-tight">

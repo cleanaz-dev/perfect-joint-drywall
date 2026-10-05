@@ -1,214 +1,254 @@
-'use client';
+"use client"
 
-import { useState } from 'react';
-import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
-import { services } from '@/lib/data';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import React, { useState } from "react";
+import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import {
   Select,
+  SelectTrigger,
+  SelectValue,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+} from "@/components/ui/select";
 
-// Base UI's Select needs an `items` array on the root (unlike Radix, which
-// only reads its options from the JSX children). The array doubles as the
-// list SelectValue uses to look up the label for the current value, so the
-// placeholder needs an entry too, with value: null.
-const projectTypeItems: { label: string; value: string | null }[] = [
-  { label: 'Select a service...', value: null },
-  ...services.map((s) => ({ label: s.title, value: s.title })),
-  { label: 'Other / Not Sure', value: 'Other' },
+const projectTypeItems = [
+  { value: "installation", label: "Drywall Installation" },
+  { value: "taping", label: "Taping & Finishing" },
+  { value: "repair", label: "Repairs & Patching" },
+  { value: "other", label: "Other" },
 ];
 
-export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+export default function ContactSection() {
   const [projectType, setProjectType] = useState<string | null>(null);
+  const [projectTypeError, setProjectTypeError] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Grab the form before any await (currentTarget is cleared after the handler returns)
+    const form = e.currentTarget;
+
+    // Make sure they selected a project type
+    if (!projectType) {
+      setProjectTypeError(true);
+      return;
+    }
+    setProjectTypeError(false);
+
+    // Collect all form data in one place
+    const formData = new FormData(form);
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const email = formData.get("email") as string;
+    const details = formData.get("details") as string;
+    const projectTypeLabel =
+      projectTypeItems.find((item) => item.value === projectType)?.label ??
+      projectType;
+
+    const data = {
+      name,
+      phone,
+      email,
+      projectType, // value, e.g. "taping"
+      projectTypeLabel, // label, e.g. "Taping & Finishing"
+      details,
+    };
+
+    // TODO: Plug in your email action here, e.g.
+    // await fetch("/api/send-email", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(data),
+    // });
+    console.log("Form data:", data);
+
+    // Show success message and reset form
+    setSubmitted(true);
+    form.reset();
+    setProjectType(null);
+
+    // Hide success message after 5 seconds
+    setTimeout(() => setSubmitted(false), 5000);
+  };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-stone-900 py-24">
-      <div className="absolute inset-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://images.pexels.com/photos/36035072/pexels-photo-36035072.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920"
-          alt=""
-          className="h-full w-full object-cover opacity-20"
-        />
-      </div>
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <div className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-primary">
-              <span className="h-px w-8 bg-primary" />
-              Get In Touch
-            </div>
-            <h2 className="text-4xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
-              Ready to start your project?
+    <section id="contact" className="bg-stone-950 py-20 lg:py-32">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+          {/* Left Column: Contact Information */}
+          <div className="flex flex-col justify-center">
+            <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+              Let's Discuss Your Project
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-stone-300">
-              Tell us about your drywall or carpentry project and we will get
-              back to you within 24 hours with a free, no-obligation estimate.
+            <p className="mt-4 text-lg text-stone-400 max-w-lg">
+              Get in touch with us today for a free, no-obligation quote. Our team is ready to help with any drywall needs.
             </p>
 
-            <div className="mt-10 space-y-6">
+            <div className="mt-12 space-y-8">
               <a
                 href="tel:+15555550100"
-                className="group flex items-center gap-4 transition-opacity hover:opacity-80"
+                className="group flex items-center gap-5 transition-all hover:-translate-y-1"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-colors group-hover:bg-primary/90">
-                  <Phone className="h-5 w-5" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg transition-colors group-hover:bg-primary/90">
+                  <Phone className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-stone-400">
-                    Call Us
-                  </div>
-                  <div className="text-lg font-semibold text-white">
-                    (555) 555-0100
-                  </div>
+                  <div className="text-sm font-medium text-stone-400">Call Us</div>
+                  <div className="text-xl font-bold text-white">(555) 555-0100</div>
                 </div>
               </a>
+
               <a
                 href="mailto:info@perfectjointdrywall.com"
-                className="group flex items-center gap-4 transition-opacity hover:opacity-80"
+                className="group flex items-center gap-5 transition-all hover:-translate-y-1"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-colors group-hover:bg-primary/90">
-                  <Mail className="h-5 w-5" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg transition-colors group-hover:bg-primary/90">
+                  <Mail className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-stone-400">
-                    Email Us
-                  </div>
-                  <div className="text-lg font-semibold text-white">
-                    info@perfectjointdrywall.com
-                  </div>
+                  <div className="text-sm font-medium text-stone-400">Email Us</div>
+                  <div className="text-xl font-bold text-white">info@perfectjointdrywall.com</div>
                 </div>
               </a>
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                  <MapPin className="h-5 w-5" />
+
+              <div className="flex items-center gap-5">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
+                  <MapPin className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-stone-400">
-                    Service Area
-                  </div>
-                  <div className="text-lg font-semibold text-white">
-                    Greater Toronto &amp; Surrounding Areas
-                  </div>
+                  <div className="text-sm font-medium text-stone-400">Service Area</div>
+                  <div className="text-xl font-bold text-white">Greater Toronto &amp; Surrounding Areas</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <Card className="shadow-2xl lg:p-2">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-stone-900">
-                Request a Free Quote
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form
-                className="space-y-5"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (!projectType) return;
-                  setSubmitted(true);
-                  e.currentTarget.reset();
-                  setProjectType(null);
-                  setTimeout(() => setSubmitted(false), 5000);
-                }}
-              >
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="name">Name</Label>
+          {/* Right Column: Contact Form */}
+          <div className="relative">
+            <Card className="shadow-2xl border-0 rounded-[2rem] bg-white sm:p-6 lg:p-8">
+              <CardHeader className="pb-6">
+                <CardTitle className="text-3xl font-extrabold text-stone-900">
+                  Request a Free Quote
+                </CardTitle>
+                <p className="text-stone-500 mt-2 text-base">
+                  Fill out the form below and we'll get back to you within 24 hours.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <form className="space-y-6" onSubmit={handleFormSubmit}>
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        placeholder="John Smith"
+                        className="bg-stone-50"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Phone</Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        required
+                        placeholder="(555) 555-0100"
+                        className="bg-stone-50"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
                     <Input
-                      id="name"
-                      name="name"
-                      type="text"
+                      id="email"
+                      name="email"
+                      type="email"
                       required
-                      placeholder="John Smith"
+                      placeholder="john@example.com"
+                      className="bg-stone-50"
                     />
                   </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="phone">Phone</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
+
+                  <div className="space-y-2">
+                    <Label htmlFor="project-type">Project Type</Label>
+                    {/* Base UI Select: pass `items` so SelectValue shows the label, not the raw value */}
+                    <Select
+                      items={projectTypeItems}
+                      value={projectType}
+                      onValueChange={(value) => {
+                        setProjectType(value);
+                        setProjectTypeError(false);
+                      }}
+                      name="projectType"
+                    >
+                      <SelectTrigger
+                        id="project-type"
+                        aria-invalid={projectTypeError}
+                        className="w-full bg-stone-50"
+                      >
+                        <SelectValue placeholder="Select a project type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          {projectTypeItems.map((item) => (
+                            <SelectItem
+                              key={item.value}
+                              value={item.value}
+                              className="cursor-pointer"
+                            >
+                              {item.label}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    {projectTypeError && (
+                      <p className="text-sm text-red-600">
+                        Please select a project type.
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="details">Project Details</Label>
+                    <Textarea
+                      id="details"
+                      name="details"
+                      rows={4}
                       required
-                      placeholder="(555) 555-0100"
+                      placeholder="Tell us about your project..."
+                      className="min-h-[120px] resize-none bg-stone-50"
                     />
                   </div>
-                </div>
 
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="project-type">Project Type</Label>
-                  {/* Base UI Select: controlled via value/onValueChange (not a
-                      native <select>), so it's reset manually on submit
-                      rather than by form.reset(). */}
-                  <Select
-                    items={projectTypeItems}
-                    value={projectType}
-                    onValueChange={setProjectType}
+                  <Button
+                    type="submit"
+                    className="mt-4 h-16 w-full gap-3 rounded-xl text-lg font-bold shadow-lg transition-all hover:scale-[1.02] hover:shadow-primary/30 active:scale-[0.98]"
                   >
-                    <SelectTrigger id="project-type" className="w-full">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {projectTypeItems.map((item) => (
-                          <SelectItem
-                            key={item.value ?? 'placeholder'}
-                            value={item.value}
-                          >
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div>
+                    Send Request
+                    <ArrowRight className="h-6 w-6" />
+                  </Button>
 
-                <div className="space-y-1.5">
-                  <Label htmlFor="details">Project Details</Label>
-                  <Textarea
-                    id="details"
-                    name="details"
-                    rows={4}
-                    required
-                    placeholder="Tell us about your project..."
-                  />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full gap-2">
-                  Send Request
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-
-                {submitted && (
-                  <div className="rounded-lg bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-700">
-                    Thanks! We will be in touch within 24 hours.
-                  </div>
-                )}
-              </form>
-            </CardContent>
-          </Card>
+                  {submitted && (
+                    <div className="rounded-xl bg-green-50 px-4 py-4 text-center text-sm font-medium text-green-700 ring-1 ring-green-600/20">
+                      Thanks! We will be in touch within 24 hours.
+                    </div>
+                  )}
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

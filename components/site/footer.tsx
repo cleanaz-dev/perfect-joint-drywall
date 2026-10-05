@@ -7,10 +7,10 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex items-center gap-2.5">
             {/* Logo swapped in here */}
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-primary p-1 shadow-sm ">
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden shadow-sm ">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo-no-text.png"
+                src="/new-logo-no-bg-no-text.png"
                 alt="Perfect Joint Drywall Logo"
                 className="h-full w-full object-contain"
               />
