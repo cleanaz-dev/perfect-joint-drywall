@@ -54,22 +54,11 @@ export const services = [
     description:
       'Water damage, holes, cracks, and settling issues repaired so you will never know they were there.',
   },
-  {
-    icon: House,
-    title: 'Basement Finishing',
-    description:
-      'Full basement build-outs from bare concrete to move-in-ready living space — framing, drywall, doors, trim.',
-  },
-  {
-    icon: Ruler,
-    title: 'Custom Trim & Detail',
-    description:
-      "Crown molding, baseboards, wainscoting, and accent walls finished with a craftsman's eye for detail.",
-  },
+  
 ];
 
 export const stats = [
-  { value: '15+', label: 'Years Experience' },
+  { value: '10+', label: 'Years Experience' },
   { value: '500+', label: 'Projects Completed' },
   { value: '100%', label: 'Satisfaction Guaranteed' },
   { value: '0', label: 'Callbacks Needed' },
@@ -105,19 +94,19 @@ export const steps = [
 export const testimonials = [
   {
     name: 'Sarah Mitchell',
-    location: 'Oakridge, ON',
+    location: 'Scarborough, ON',
     rating: 5,
     text: 'Perfect Joint Drywall finished our basement and the work is impeccable. You cannot find a single seam in the drywall. The crew was professional, on time, and left the space cleaner than they found it.',
   },
   {
     name: 'David Chen',
-    location: 'Maple Grove, ON',
+    location: 'Vaughan, ON',
     rating: 5,
     text: 'After a pipe leak ruined our ceiling, these guys matched the texture so perfectly you would never know there was damage. Fast, fair pricing, and genuinely nice people to work with.',
   },
   {
     name: 'Jennifer Torres',
-    location: 'Lakeshore, ON',
+    location: 'Whitby, ON',
     rating: 5,
     text: 'We hired them for a whole-house drywall job on our renovation. The level of finish is outstanding — our painter said it was the best prep work he has ever seen. Highly recommend.',
   },
