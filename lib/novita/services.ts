@@ -19,7 +19,7 @@ async function buildSystemPrompt(basePrompt: string): Promise<string> {
 
 export async function chat(
   chatMessages: { role: "user" | "assistant"; content: string }[],
-  model: LLMModel = LLM_MODEL.MIMO_V_2_6_FLASH,
+  model: LLMModel = LLM_MODEL.DEEPSEEK_V_4_1_FLASH,
   systemPrompt: string = BASE_SYSTEM_PROMPT
 ): Promise<string> {
   const response = await novita.chat.completions.create({
