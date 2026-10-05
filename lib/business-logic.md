@@ -13,7 +13,7 @@
 
 ## Contact
 
-- **Phone:** (555) 555-0100
+- **Phone:** (647) 514-2453
 - **Email:** info@perfectjointdrywall.com
 - **Business hours:** [e.g. Mon-Fri 7:00 AM - 5:00 PM, Sat by appointment]
 - **Response time:** Quote requests are answered within 24 hours.
