@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description:
     'Perfect Joint Drywall delivers expert drywall installation, taping, and carpentry for homes and businesses. Clean work, perfect joints, on-time delivery.',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/new-logo-no-bg.png',
+    apple: '/new-logo-no-bg.png',
   },
   openGraph: {
     title: 'Perfect Joint Drywall — Expert Drywall & Carpentry',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/logo.png', 
+        url: '/new-logo-no-bg.png', 
         width: 800,
         height: 600,
         alt: 'Perfect Joint Drywall Logo',
